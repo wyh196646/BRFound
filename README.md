@@ -57,7 +57,7 @@ The BRFound models can be accessed from [HuggingFace Hub](https://huggingface.co
 
 The BRFound model consists of a tile encoder, that extracts local patterns at patch level, and a slide encoder, that outputs representations at slide level. This model can be used in both tile-level and slide-level tasks. When doing inference at the slide level, we recommend following this pipeline: (1) Tile the whole slide into N image tiles, with the coordinates of each tile. (2) Get the embeddings for each tile using our tile encoder. (3) Pass the N image tile embeddings and their coordinates into the slide encoder, to get slide level representations.
 
-### Inference with the tile encoder
+<!-- ### Inference with the tile encoder
 
 First, load BRFound tile encoder:
 
@@ -161,7 +161,7 @@ The model is not intended or made available for clinical use as a medical device
 
 ## Acknowledgements
 
-We would like to express our gratitude to the authors and developers of the exceptional repositories that this project is built upon: DINOv2, MAE, Timm, and TorchScale. Their contributions have been invaluable to our work.
+We would like to express our gratitude to the authors and developers of the exceptional repositories that this project is built upon: DINOv2, MAE, Timm, and TorchScale. Their contributions have been invaluable to our work. -->
 
 ## Citation
 If you find BRFound useful for your your research and applications, please cite using this BibTeX:
