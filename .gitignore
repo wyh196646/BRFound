@@ -13,7 +13,6 @@ DEBUG*
 *.tif
 *.tiff
 *.png
-*.jpg
 *.tsv
 *.jpeg
 *.bmp
@@ -42,7 +41,6 @@ __pycache__/
 *.png
 # C extensions
 *.so
-*.jpg
 # Distribution / packaging
 .Python
 build/
