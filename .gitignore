@@ -22,7 +22,6 @@ DEBUG*
 *.nii
 *.tsv.gz
 *.nii.gz
-*.h5
 *.hdf5
 *.hdf
 *.hdf4
@@ -175,7 +174,6 @@ src/misc
 src/debug
 core.*
 *.csv
-*.h5
 *.pkl
 ./finetune/wandb/*
 ./finetune/wandb
