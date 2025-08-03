@@ -1,5 +1,5 @@
 
-from . import vision_transformer as vits  # noqa: F401
+from . import patch_transformer as vits  # noqa: F401
 
 def build_model(args, only_teacher=False, img_size=224):
     # 如果模型架构中包含"vit"，则去掉"_memeff"后缀
