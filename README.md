@@ -4,13 +4,13 @@
 
 [[`Model`](https://huggingface.co/Microgle/BRFound)] [[`Paper`]] 
 
-Yuhao Wang, Fei Ren, Baizhi Wang*, Yunjie Gu, Qingsong Yao, Han Li, Fenghe Tang, Qingpeng Kong, Rongsheng Wang, Xin Luo, Zikang Xu, Yijun Zhou, Wei Ba, Xueyuan Zhang, Kun Zhang, Zhigang Song, Zihang Jiang, Xiuwu Bian, Rui Yan, S. Kevin Zhou* (*Cooresponding Author)
+Yuhao Wang, Fei Ren, Baizhi Wang*, Yunjie Gu, Qingsong Yao, Han Li, Fenghe Tang, Qingpeng Kong, Rongsheng Wang, Xin Luo, Zikang Xu, Yijun Zhou, Wei Ba, Xueyuan Zhang, Kun Zhang, Zhigang Song, Zihang Jiang, Xiuhui Shi, Xiuwu Bian, Rui Yan, S. Kevin Zhou* (*Cooresponding Author)
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 
 ### August 2025
-- **Initial Model and Code Release**: We are excited toe release BRFound BRFound model and its code is now available. 
+- **Initial Model and Code Release**: We are excited to release the pre-trained weights of BRFound and its inference code is now available. 
 ## Model Overview
 
 <p align="center">
@@ -39,7 +39,7 @@ pip install -e .
 
 ## Model Download
 
-The BRFound models can be accessed from [HuggingFace Hub](https://huggingface.co/Microgle/BRFound).
+The weights of BRFound models can be accessed from [HuggingFace Hub](https://huggingface.co/Microgle/BRFound).
 
 
 ## Inference with BRFound
