@@ -1,3 +1,5 @@
+
+
 # BRFound
 
 ## A Clinically Feasible Whole Slide Foundation Model for Breast Oncology
@@ -57,7 +59,7 @@ from PIL import Image
 import sys
 import os
 from src import build_model_from_cfg
-from src.vision_transformer import vit_base
+from src.patch_transformer import vit_base
 from src.utils import load_pretrained_weights
 
 
@@ -239,4 +241,3 @@ if __name__ == "__main__":
 ## Acknowledgements
 
 We would like to express our gratitude to the authors and developers of the exceptional repositories that this project is built upon: GigaPath, Donov2 and UNI Their contributions have been invaluable to our work.
-
