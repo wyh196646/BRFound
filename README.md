@@ -1,6 +1,6 @@
 # BRFound
 
-## A Clinically Feasible Whole Slide Foundation Model for Breast Oncology
+## A breast-specific slide-level foundation model for computational pathology
 
 [[`Model`](https://huggingface.co/Microgle/BRFound)] [[`Paper`]] 
 
@@ -9,12 +9,17 @@ Yuhao Wang, Fei Ren, Baizhi Wang*, Yunjie Gu, Qingsong Yao, Han Li, Fenghe Tang,
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 
+### October 2026
+- Updated the manuscript overview and added a reproducible slide-inference command.
+- Added `slide_encoder_inference.pth`: the epoch-161 teacher backbone exported as a
+  plain tensor dictionary. It has the same parameters as the existing training checkpoint.
+
 ### August 2025
 - **Initial Model and Code Release**: We are excited to release the pre-trained weights of BRFound and its inference code is now available. 
 ## Model Overview
 
 <p align="center">
-    <img src="images/Model_Overview.jpg" width="90%"> <br>
+    <img src="images/Model_Overview.png" width="90%"> <br>
 
   *Overview of BRFound model architecture*
 
@@ -34,7 +39,7 @@ cd BRFound
 ```Shell
 conda env create -f environment.yaml
 conda activate BRFound
-pip install -e .
+pip install huggingface_hub
 ```
 
 ## Model Download
@@ -132,109 +137,45 @@ if __name__ == "__main__":
     print(f"Extracted features shape: {features.shape}")
 ```
 
-### Runing Inference with the Slide  Encoder of BRFound
+### Run inference with the slide encoder
 
-```
-import torch
-import numpy as np
-from sklearn.cluster import KMeans
-import h5py
-from torch.utils.data import Dataset, DataLoader
-from src.slide_transformer import vit_base
+Download the compact inference weights from
+[Hugging Face](https://huggingface.co/Microgle/BRFound):
 
-# Slide dataset class
-class SlideDataset(Dataset):
-    def __init__(self, h5_path):
-        self.h5_path = h5_path
-        self.features, self.coords = self._read_h5(h5_path)
+```python
+from huggingface_hub import hf_hub_download
 
-    @staticmethod
-    def _read_h5(h5_path):
-        with h5py.File(h5_path, 'r') as f:
-            features = f['features'][:]
-            coords = f['coords'][:]
-        return features, coords
-
-    def __len__(self):
-        return len(self.features)
-
-    def __getitem__(self, idx):
-        return self.features[idx], self.coords[idx]
-    
-class ClusterSelector:
-    def __init__(self, num_clusters=8, selection_ratio=0.25):
-        self.num_clusters = num_clusters
-        self.selection_ratio = selection_ratio
-
-    def select_patches(self, features, coords):
-        kmeans = KMeans(n_clusters=self.num_clusters, random_state=42)
-        labels = kmeans.fit_predict(features)
-
-        selected_features = []
-        selected_coords = []
-
-        for cluster_id in np.unique(labels):
-            cluster_indices = np.where(labels == cluster_id)[0]
-            cluster_features = features[cluster_indices]
-            cluster_coords = coords[cluster_indices]
-
-            # Select a random seed patch
-            seed_idx = np.random.choice(len(cluster_features))
-            seed_feature = cluster_features[seed_idx]
-
-            # Calculate distances and select closest 25%
-            distances = np.linalg.norm(cluster_features - seed_feature, axis=1)
-            num_select = max(1, int(len(cluster_features) * self.selection_ratio))
-            nearest_indices = distances.argsort()[:num_select]
-
-            selected_features.append(cluster_features[nearest_indices])
-            selected_coords.append(cluster_coords[nearest_indices])
-            
-        selected_features = np.concatenate(selected_features, axis=0)
-        selected_coords = np.concatenate(selected_coords, axis=0)
-        return selected_features,selected_coords
-
-# Load pretrained model
-def load_model(weights_path, device='cuda'):
-    model = vit_base(slide_embedding_size=768,return_all_tokens=False)
-    state_dict = torch.load(weights_path, map_location=device,weights_only=False)
-    state_dict = {k.replace("module.", "").replace("backbone.", ""): v for k, v in state_dict.items()}
-    model.load_state_dict(state_dict, strict=False)
-    model.to(device).eval()
-    return model
-
-# Extract slide-level features
-def extract_slide_features(h5_path, weights_path, device='cuda'):
-    dataset = SlideDataset(h5_path)
-    features, coords = dataset.features, dataset.coords
-
-    selector = ClusterSelector(num_clusters=8, selection_ratio=0.25)
-    # Ensure features and coords are aligned
-    assert features.shape[0] == coords.shape[0], f"Features and coords must have same first dimension, got {features.shape[0]} and {coords.shape[0]}"
-    selected_features, selected_coords = selector.select_patches(features, coords)
-
-    model = load_model(weights_path, device)
-    model.to(device)
-    with torch.no_grad():
-        selected_features = torch.tensor(selected_features).unsqueeze(0).to(device) 
-        selected_coords = torch.tensor(selected_coords).unsqueeze(0).to(device)
-        masks = torch.zeros(selected_features.shape[0], 
-        selected_features.shape[1], 
-        dtype=torch.bool).to(device)
-        slide_features = model(torch.tensor(selected_features), torch.tensor(selected_coords), masks).to(device).cpu().numpy()
-
-    return slide_features
-
-# Usage example
-if __name__ == "__main__":
-    h5_path = './images/sample.h5'
-    weights_path = './weights/slide_encoder.pth'
-
-    features = extract_slide_features(h5_path, weights_path)
-    print("Extracted slide features shape:", features.shape)
-
+hf_hub_download(
+    repo_id="Microgle/BRFound",
+    filename="slide_encoder_inference.pth",
+    local_dir="weights",
+)
 ```
 
+Prepare an HDF5 file containing `features` with shape `[N, 768]` from the BRFound
+patch encoder and matching `coords` with shape `[N, 2]`. Coordinates are nonnegative
+`(x, y)` pixel locations on the 256-pixel tile grid used during preprocessing.
+Use the same coordinate scale as the training pipeline. This command accepts patch
+features; WSI patch extraction is a separate preprocessing step.
+
+```bash
+python inference.py --features images/sample.h5 \
+  --weights weights/slide_encoder_inference.pth \
+  --output outputs/slide_embedding.npy --device cuda
+```
+
+Use `--device cpu` when CUDA is unavailable. The output is a NumPy array of shape
+`[1, 768]`, suitable for a downstream prediction head. By default, inference uses
+eight feature clusters, a 25% sampling ratio, a maximum of 4,000 tokens and seed 42.
+These settings can be changed with `--clusters`, `--ratio`, `--max-tokens` and `--seed`.
+The command checks feature dimensions, loads all backbone weights strictly, and computes
+the original sinusoidal positions on demand to avoid allocating the full slide grid.
+
+The original `patch_encoder.pth` and `slide_encoder.pth` remain available. The new
+`slide_encoder_inference.pth` omits optimizer and pre-training-head state; it contains
+the same teacher-backbone tensors. See `inference_config.json` on Hugging Face for
+the source checkpoint epoch and SHA-256 checksums. The release was checked for strict
+loading, repeatable CPU inference and agreement with the original positional encoding.
 
 ## Acknowledgements
 

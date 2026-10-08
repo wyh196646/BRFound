@@ -17,7 +17,7 @@ import warnings
 from functools import partial
 
 from timm.models.registry import register_model
-from .pos_embed import get_2d_sincos_pos_embed
+from .pos_embed import get_2d_sincos_pos_embed, get_2d_sincos_pos_embed_from_grid
 def _no_grad_trunc_normal_(tensor, mean, std, a, b):
     # Cut & paste from PyTorch official master until it's in a few official releases - RW
     # Method based on https://people.sc.fsu.edu/~jburkardt/presentations/truncated_normal.pdf
@@ -158,12 +158,14 @@ class VisionTransformer(nn.Module):
     def __init__(self, slide_embedding_size=384, num_classes=0, embed_dim=768, depth=12,
                  num_heads=12, mlp_ratio=4., qkv_bias=False, qk_scale=None, drop_rate=0., attn_drop_rate=0.,
                  drop_path_rate=0., norm_layer=partial(nn.LayerNorm, eps=1e-6), return_all_tokens=False, 
-                 init_values=0, slide_ngrids=2000, use_mean_pooling=False, masked_im_modeling=False):
+                 init_values=0, slide_ngrids=2000, use_mean_pooling=False, masked_im_modeling=False,
+                 dynamic_pos_embed=False):
         super().__init__()
         self.embed_dim= embed_dim
         self.return_all_tokens = return_all_tokens
         self.slide_embedding_size = slide_embedding_size
-        num_patches = slide_ngrids**2
+        self.dynamic_pos_embed = dynamic_pos_embed
+        num_patches = 0 if dynamic_pos_embed else slide_ngrids**2
         self.patch_embed = PatchEmbed(
              embedding_size=slide_embedding_size,  embed_dim=embed_dim)
         self.slide_ngrids = slide_ngrids
@@ -186,8 +188,9 @@ class VisionTransformer(nn.Module):
 
         #trunc_normal_(self.pos_embed, std=.02)
         trunc_normal_(self.cls_token, std=.02)
-        pos_embed = get_2d_sincos_pos_embed(self.pos_embed.shape[-1], self.slide_ngrids, cls_token=True)
-        self.pos_embed.data.copy_(torch.from_numpy(pos_embed).float().unsqueeze(0))
+        if not dynamic_pos_embed:
+            pos_embed = get_2d_sincos_pos_embed(self.pos_embed.shape[-1], self.slide_ngrids, cls_token=True)
+            self.pos_embed.data.copy_(torch.from_numpy(pos_embed).float().unsqueeze(0))
         self.apply(self._init_weights)
 
         # masked image modeling
@@ -229,7 +232,15 @@ class VisionTransformer(nn.Module):
         # print(x.shape)
         # print(self.pos_embed.shape)
         # print(pos.shape)
-        x = x + self.pos_embed[:, pos, :].squeeze(0)
+        if self.dynamic_pos_embed:
+            grid = torch.floor(coords / 256).detach().cpu().numpy()
+            # The original flattened table indexes x * grid_size + y, so its
+            # first sinusoidal half encodes y and its second half encodes x.
+            encoding = get_2d_sincos_pos_embed_from_grid(
+                self.embed_dim, [grid[..., 1], grid[..., 0]])
+            x = x + torch.from_numpy(encoding).to(x).reshape_as(x)
+        else:
+            x = x + self.pos_embed[:, pos, :].squeeze(0)
         #print('compute success')
         if mask is not None:
             x = self.mask_model(x, mask)
