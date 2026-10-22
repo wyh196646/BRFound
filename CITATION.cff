@@ -1,0 +1,189 @@
+cff-version: 1.2.0
+message: >-
+  If you use BRFound, please cite this repository using the metadata below.
+type: software
+title: "BRFound: An efficient breast-specific whole slide foundation model for precision oncology"
+authors:
+  - family-names: "Wang"
+    given-names: "Yuhao"
+    affiliation: >-
+      School of Biomedical Engineering, Division of Life Sciences and Medicine,
+      University of Science and Technology of China (USTC), Hefei 230026, China; Center
+      for Medical Imaging, Robotics, Analytic Computing & Learning (MIRACLE), Suzhou
+      Institute for Advanced Research, USTC, Suzhou 215123, China
+  - family-names: "Ren"
+    given-names: "Fei"
+    affiliation: >-
+      SKLP, Institute of Computing Technology, Chinese Academy of Sciences, Beijing
+      100190, China
+  - family-names: "Wang"
+    given-names: "Baizhi"
+    affiliation: >-
+      School of Biomedical Engineering, Division of Life Sciences and Medicine,
+      University of Science and Technology of China (USTC), Hefei 230026, China; Center
+      for Medical Imaging, Robotics, Analytic Computing & Learning (MIRACLE), Suzhou
+      Institute for Advanced Research, USTC, Suzhou 215123, China
+  - family-names: "Wang"
+    given-names: "Xiuhong"
+    affiliation: >-
+      Department of Pathology, China-Japan Friendship Hospital, Beijing 100029, China
+  - family-names: "Gu"
+    given-names: "Yunjie"
+    affiliation: >-
+      School of Biomedical Engineering, Division of Life Sciences and Medicine,
+      University of Science and Technology of China (USTC), Hefei 230026, China; Center
+      for Medical Imaging, Robotics, Analytic Computing & Learning (MIRACLE), Suzhou
+      Institute for Advanced Research, USTC, Suzhou 215123, China
+  - family-names: "Li"
+    given-names: "Han"
+    affiliation: >-
+      Computer Aided Medical Procedures, Technical University of Munich, Munich, 80333,
+      Germany
+  - family-names: "Tang"
+    given-names: "Fenghe"
+    affiliation: >-
+      School of Biomedical Engineering, Division of Life Sciences and Medicine,
+      University of Science and Technology of China (USTC), Hefei 230026, China; Center
+      for Medical Imaging, Robotics, Analytic Computing & Learning (MIRACLE), Suzhou
+      Institute for Advanced Research, USTC, Suzhou 215123, China
+  - family-names: "Kong"
+    given-names: "Qingpeng"
+    affiliation: >-
+      School of Biomedical Engineering, Division of Life Sciences and Medicine,
+      University of Science and Technology of China (USTC), Hefei 230026, China; Center
+      for Medical Imaging, Robotics, Analytic Computing & Learning (MIRACLE), Suzhou
+      Institute for Advanced Research, USTC, Suzhou 215123, China
+  - family-names: "Wang"
+    given-names: "Rongsheng"
+    affiliation: >-
+      School of Biomedical Engineering, Division of Life Sciences and Medicine,
+      University of Science and Technology of China (USTC), Hefei 230026, China; Center
+      for Medical Imaging, Robotics, Analytic Computing & Learning (MIRACLE), Suzhou
+      Institute for Advanced Research, USTC, Suzhou 215123, China
+  - family-names: "Luo"
+    given-names: "Xin"
+    affiliation: >-
+      School of Biomedical Engineering, Division of Life Sciences and Medicine,
+      University of Science and Technology of China (USTC), Hefei 230026, China; Center
+      for Medical Imaging, Robotics, Analytic Computing & Learning (MIRACLE), Suzhou
+      Institute for Advanced Research, USTC, Suzhou 215123, China
+  - family-names: "Xu"
+    given-names: "Zikang"
+    affiliation: >-
+      School of Biomedical Engineering, Division of Life Sciences and Medicine,
+      University of Science and Technology of China (USTC), Hefei 230026, China; Center
+      for Medical Imaging, Robotics, Analytic Computing & Learning (MIRACLE), Suzhou
+      Institute for Advanced Research, USTC, Suzhou 215123, China
+  - family-names: "Zhou"
+    given-names: "Yijun"
+    affiliation: >-
+      School of Mathematics, Sun Yat-sen University, Guangzhou 510275, China
+  - family-names: "Ba"
+    given-names: "Wei"
+    affiliation: >-
+      Department of Pathology, Chinese PLA General Hospital, Beijing 100853, China
+  - family-names: "Zhang"
+    given-names: "Xueyuan"
+    affiliation: >-
+      Chongqing Zhijian Life Technology Co., Ltd., Chongqing 400039, China
+  - family-names: "Zhang"
+    given-names: "Kun"
+    affiliation: >-
+      School of Biomedical Engineering, Division of Life Sciences and Medicine,
+      University of Science and Technology of China (USTC), Hefei 230026, China; Center
+      for Medical Imaging, Robotics, Analytic Computing & Learning (MIRACLE), Suzhou
+      Institute for Advanced Research, USTC, Suzhou 215123, China
+  - family-names: "Song"
+    given-names: "Zhigang"
+    affiliation: >-
+      Department of Pathology, Chinese PLA General Hospital, Beijing 100853, China
+  - family-names: "Jiang"
+    given-names: "Zihang"
+    affiliation: >-
+      School of Biomedical Engineering, Division of Life Sciences and Medicine,
+      University of Science and Technology of China (USTC), Hefei 230026, China; Center
+      for Medical Imaging, Robotics, Analytic Computing & Learning (MIRACLE), Suzhou
+      Institute for Advanced Research, USTC, Suzhou 215123, China
+  - family-names: "Shi"
+    given-names: "Xiuhui"
+    affiliation: >-
+      The First Affiliated Hospital of USTC, Division of Life Sciences and Medicine,
+      University of Science and Technology of China, Hefei 230026, China
+  - family-names: "Bian"
+    given-names: "Xiuwu"
+    affiliation: >-
+      Institute of Pathology and Southwest Cancer Center, Southwest Hospital, Third
+      Military Medical University (Army Medical University), Chongqing 400039, China;
+      Key Laboratory of Tumor Immunopathology, Ministry of Education of China, Chongqing
+      400039, China
+  - family-names: "Jia"
+    given-names: "Wei"
+    affiliation: >-
+      Department of Pathology, the First Affiliated Hospital of Shihezi University and
+      Department of Pathology, School of Medicine, Shihezi University, Xinjiang 832002,
+      China
+  - family-names: "Tang"
+    given-names: "Xuefeng"
+    affiliation: >-
+      Department of Pathology, Chongqing Academy of Medical Sciences, Chongqing General
+      Hospital, Chongqing University, Chongqing 401147, China
+  - family-names: "Yan"
+    given-names: "Rui"
+    affiliation: >-
+      School of Biomedical Engineering, Division of Life Sciences and Medicine,
+      University of Science and Technology of China (USTC), Hefei 230026, China; Center
+      for Medical Imaging, Robotics, Analytic Computing & Learning (MIRACLE), Suzhou
+      Institute for Advanced Research, USTC, Suzhou 215123, China; Jiangsu Provincial
+      Key Laboratory of Multimodal Digital Twin Technology, Suzhou 215123, China; State
+      Key Laboratory of Precision and Intelligent Chemistry, USTC, Hefei 230026, China
+  - family-names: "Zhou"
+    given-names: "Shaohua Kevin"
+    affiliation: >-
+      School of Biomedical Engineering, Division of Life Sciences and Medicine,
+      University of Science and Technology of China (USTC), Hefei 230026, China; Center
+      for Medical Imaging, Robotics, Analytic Computing & Learning (MIRACLE), Suzhou
+      Institute for Advanced Research, USTC, Suzhou 215123, China; Jiangsu Provincial
+      Key Laboratory of Multimodal Digital Twin Technology, Suzhou 215123, China; State
+      Key Laboratory of Precision and Intelligent Chemistry, USTC, Hefei 230026, China;
+      Biomedical Basic Research Center (BBRC) of Jiangsu, Suzhou 215123, China
+contact:
+  - family-names: "Jia"
+    given-names: "Wei"
+    email: "jiawei@shzu.edu.cn"
+    affiliation: >-
+      Department of Pathology, the First Affiliated Hospital of Shihezi University and
+      Department of Pathology, School of Medicine, Shihezi University, Xinjiang 832002,
+      China
+  - family-names: "Tang"
+    given-names: "Xuefeng"
+    email: "txfaty@163.com"
+    affiliation: >-
+      Department of Pathology, Chongqing Academy of Medical Sciences, Chongqing General
+      Hospital, Chongqing University, Chongqing 401147, China
+  - family-names: "Yan"
+    given-names: "Rui"
+    email: "yanrui@ustc.edu.cn"
+    affiliation: >-
+      School of Biomedical Engineering, Division of Life Sciences and Medicine,
+      University of Science and Technology of China (USTC), Hefei 230026, China; Center
+      for Medical Imaging, Robotics, Analytic Computing & Learning (MIRACLE), Suzhou
+      Institute for Advanced Research, USTC, Suzhou 215123, China; Jiangsu Provincial
+      Key Laboratory of Multimodal Digital Twin Technology, Suzhou 215123, China; State
+      Key Laboratory of Precision and Intelligent Chemistry, USTC, Hefei 230026, China
+  - family-names: "Zhou"
+    given-names: "Shaohua Kevin"
+    email: "skevinzhou@ustc.edu.cn"
+    affiliation: >-
+      School of Biomedical Engineering, Division of Life Sciences and Medicine,
+      University of Science and Technology of China (USTC), Hefei 230026, China; Center
+      for Medical Imaging, Robotics, Analytic Computing & Learning (MIRACLE), Suzhou
+      Institute for Advanced Research, USTC, Suzhou 215123, China; Jiangsu Provincial
+      Key Laboratory of Multimodal Digital Twin Technology, Suzhou 215123, China; State
+      Key Laboratory of Precision and Intelligent Chemistry, USTC, Hefei 230026, China;
+      Biomedical Basic Research Center (BBRC) of Jiangsu, Suzhou 215123, China
+repository-code: https://github.com/wyh196646/BRFound
+url: https://github.com/wyh196646/BRFound
+keywords:
+  - computational pathology
+  - breast cancer
+  - foundation model

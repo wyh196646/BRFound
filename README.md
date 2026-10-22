@@ -1,13 +1,33 @@
 # BRFound
 
-## A breast-specific slide-level foundation model for computational pathology
+## An efficient breast-specific whole slide foundation model for precision oncology
 
-[[`Model`](https://huggingface.co/Microgle/BRFound)] [[`Paper`]] 
+[Model weights](https://huggingface.co/Microgle/BRFound) |
+[Authors and affiliations](AUTHORS.md) | [Citation](#citation)
 
-Yuhao Wang, Fei Ren, Baizhi Wang*, Yunjie Gu, Qingsong Yao, Han Li, Fenghe Tang, Qingpeng Kong, Rongsheng Wang, Xin Luo, Zikang Xu, Yijun Zhou, Wei Ba, Xueyuan Zhang, Kun Zhang, Zhigang Song, Zihang Jiang, Xiuhui Shi, Xiuwu Bian, Rui Yan, S. Kevin Zhou* (*Cooresponding Author)
+Yuhao Wang<sup>†</sup>, Fei Ren<sup>†</sup>, Baizhi Wang<sup>†</sup>,
+Xiuhong Wang<sup>†</sup>, Yunjie Gu, Han Li, Fenghe Tang, Qingpeng Kong, Rongsheng Wang,
+Xin Luo, Zikang Xu, Yijun Zhou, Wei Ba, Xueyuan Zhang, Kun Zhang, Zhigang Song,
+Zihang Jiang, Xiuhui Shi, Xiuwu Bian, Wei Jia<sup>*</sup>, Xuefeng Tang<sup>*</sup>,
+Rui Yan<sup>*</sup>, Shaohua Kevin Zhou<sup>*</sup>
+
+<sup>†</sup> Equal contribution: Yuhao Wang, Fei Ren, Baizhi Wang, Xiuhong Wang.
+
+<sup>*</sup> Corresponding authors: Wei Jia (jiawei@shzu.edu.cn); Xuefeng Tang
+(txfaty@163.com); Rui Yan (yanrui@ustc.edu.cn); Shaohua Kevin Zhou
+(skevinzhou@ustc.edu.cn).
+
+Full affiliations and contribution roles are listed in [AUTHORS.md](AUTHORS.md).
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+
+### 22 October 2026
+
+- Synchronized the manuscript title, author order, equal contribution,
+  corresponding authors and affiliations.
+- Added complete author metadata in `AUTHORS.md` and `CITATION.cff`.
+- Updated the model overview from the current manuscript Figure 1.
 
 ### October 2026
 - Updated the manuscript overview and added a reproducible slide-inference command.
@@ -176,6 +196,12 @@ The original `patch_encoder.pth` and `slide_encoder.pth` remain available. The n
 the same teacher-backbone tensors. See `inference_config.json` on Hugging Face for
 the source checkpoint epoch and SHA-256 checksums. The release was checked for strict
 loading, repeatable CPU inference and agreement with the original positional encoding.
+
+## Citation
+
+Use GitHub's **Cite this repository** option or [CITATION.cff](CITATION.cff) for the
+complete author list. Contribution roles and correspondence are listed in
+[AUTHORS.md](AUTHORS.md).
 
 ## Acknowledgements
 
